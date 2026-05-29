@@ -143,8 +143,7 @@ Macro_Write_Block(GPIOA->MODER, 0xF, 0xA, 0);
 Macro_Check_Bit_Set(GPIOC->IDR, 12);
 ```
 
-이 매크로들은 `macro.h`에 정의된 것으로 보이며, 레지스터의 특정 비트를 set/clear하거나, 특정 bit field에 값을 쓰거나, 입력 상태를 확인하는 데 사용됩니다.  
-README에서는 매크로의 내부 구현보다 사용 목적을 중심으로 이해하면 됩니다.
+이 매크로들은 `macro.h`에 정의되어 있으며 레지스터의 특정 비트를 set/clear하거나, 특정 bit field에 값을 쓰거나, 입력 상태를 확인하는 데 사용됩니다.  
 
 | Macro Usage | Meaning |
 |---|---|
@@ -836,21 +835,7 @@ void Buzzer_Set(int freq) {
 
 ---
 
-## 15. Optional Files for Further Documentation
-
-현재 README는 주요 제어 로직, 공통 헤더 구조, 하드웨어 드라이버 대부분을 포함합니다.  
-아래 파일들은 필수는 아니지만, 추가로 반영하면 코드 설명 문서를 더 세밀하게 확장할 수 있습니다.
-
-| Optional File | Additional Details It Can Explain |
-|---|---|
-| `arduino.c` | RFID 인증 신호를 STM32가 어떤 GPIO에서 어떻게 읽는지 입력 핀/신호 방식 설명 가능 |
-| `uart.c` | UART2 초기화, baud rate 설정, `printf()` 리다이렉션 구조 설명 가능 |
-| `clock.c` | PLL 96 MHz 시스템 클럭 설정 근거와 타이머 계산의 기준 설명 가능 |
-| `Makefile` | GCC ARM Toolchain 기반 빌드 명령, 오브젝트 파일, 링커/컴파일 옵션 설명 가능 |
-
----
-
-## 16. Code-Level Control Flow Summary
+## 15. Code-Level Control Flow Summary
 
 ```text
 device_driver.h
