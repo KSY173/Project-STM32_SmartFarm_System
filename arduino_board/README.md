@@ -65,10 +65,10 @@ Arduino 코드는 `RFID_arduino.ino`에 작성되어 있으며, 주요 기능은
 
 | Arduino Pin | Connected Module | Function |
 |---|---|---|
-| D10 | RC522 SDA/SS | SPI Slave Select |
-| D9 | RC522 RST | RC522 Reset |
-| D6 | STM32 PA4 | Authorized signal output |
-| SPI Pins | RC522 SPI | RFID data communication |
+| D10 | RC522 SDA/SS | SPI 통신에서 RC522 모듈을 선택하는 Slave Select 신호 |
+| D9 | RC522 RST | RC522 모듈 초기화 신호 |
+| D6 | STM32 PA4 | RFID 인증 성공 시 STM32로 전달하는 인증 완료 신호 출력 |
+| SPI Pins | RC522 SPI | RC522와 RFID 데이터를 주고받기 위한 SPI 통신 |
 
 Arduino 코드에서는 다음과 같이 핀을 정의합니다.
 
@@ -86,7 +86,7 @@ Arduino 코드에서는 다음과 같이 핀을 정의합니다.
 
 | STM32 Pin | Connected Module | Function |
 |---|---|---|
-| PA4 | Arduino D6 | RFID authorized signal input |
+| PA4 | Arduino D6 | 아두이노에서 출력한 RFID 인증 완료 신호를 STM32가 입력으로 수신|
 
 STM32의 `arduino.c`에서는 `PA4`를 입력 모드로 설정하고, pull-down을 적용하여 기본 상태가 LOW가 되도록 구성했습니다.
 
@@ -353,29 +353,29 @@ Arduino D6 ── 1kΩ ── STM32 PA4
 ## 11. Full Operation Summary
 
 ```text
-System Start
+시스템 시작
    ↓
-Arduino Serial / SPI / RC522 Init
+Arduino Serial / SPI / RC522 초기화
    ↓
 STM_SIGNAL_PIN(D6) LOW 초기화
    ↓
-RFID Card Detection Wait
+RFID 카드 감지 대기
    ↓
-Card Detected
+카드 감지
    ↓
-Read UID
+UID 읽
    ↓
-Compare UID with authorizedCards[]
-   ┣ Unauthorized
-   │    └ Print log only
+authorizedCards[]에 등록된 UID와 비교
+   ┣ 미등록 카드
+   │    └ 로그만 출력
    │
-   ┗ Authorized
+   ┗ 등록 카드
         ↓
-      D6 HIGH 100 ms Pulse
+      D6 HIGH 100 ms Pulse 출력
         ↓
-      STM32 PA4 detects HIGH pulse
+      STM32 PA4에서 HIGH pulse 감지
         ↓
-      STM32 opens door servo for 10 seconds
+      STM32가 도어 서보모터 10초 동안 개방
 ```
 
 ---
