@@ -824,14 +824,14 @@ void Buzzer_Set(int freq) {
 
 | Technique | Applied Area | Purpose |
 |---|---|---|
-| System tick scheduling | Overall main loop | Replace blocking delay with time-based task control |
-| Rising edge detection | RFID door event | Prevent repeated door-open events while signal remains HIGH |
-| Hysteresis | Water level and light control | Prevent chattering around threshold values |
-| Moving average filter | Light sensor | Reduce noise and sudden brightness changes |
-| Software debouncing | Flame sensor | Ignore short noise pulses and require 1 s continuous detection |
-| Non-blocking motor task | Step motor | Keep main loop responsive during blind movement |
-| Emergency priority flag | Fire response | Stop normal logic and force emergency behavior |
-| Centralized driver header | Whole project | Share module interfaces and global state through `device_driver.h` |
+| System tick scheduling | 전체 main 루프 | blocking 대신 시간 기준 작업 제어 방식 |
+| Rising edge detection | RFID 문 개방 이벤트 | 신호 high일 때 반복적인 문 움직임 방지 |
+| Hysteresis | 수위, 조도 조절 | 채터링 방지 |
+| Moving average filter | LED 센서 | 노이즈 감소 |
+| Software debouncing | 화재 감지 센서 | 순간적인 노이즈 무시, 화재 신호가 1초 이상 연속 감지일 때만 비상 |
+| Non-blocking motor task | 스텝 모터 |블라인드 작동 중에 기존 로직 유지 |
+| Emergency priority flag | 화재 감지 | 기존 로직 중단 및 emerjecy 우선 |
+| Centralized driver header | 전체 프로젝트 | 전체적인 함수 선언, 전역 변수, 매크로 관리 |
 
 ---
 
