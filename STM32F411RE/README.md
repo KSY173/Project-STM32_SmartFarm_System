@@ -1,8 +1,4 @@
 # STM32 SmartFarm System - Code Implementation Notes
-
-이 문서는 프로젝트 소개용 README와 별도로, **STM32 SmartFarm System의 코드 구현 방식**을 설명하기 위한 기술 문서입니다.  
-프로젝트의 전체 소개, 시연 영상, 하드웨어 사진, 트러블슈팅 내용은 메인 README에 정리하고, 본 문서에서는 `main.c`, `device_driver.h`, `exception.c`, `timer.c`, `adc.c`, `indicator.c`, `step.c`, `pump.c`, `servo.c`의 구현 구조를 중심으로 설명합니다.
-
 ---
 
 ## 1. Document Scope
@@ -20,9 +16,6 @@
 | `step.c` | 블라인드용 스텝모터 non-blocking 제어 |
 | `pump.c` | TIM3_CH4 PWM 기반 DC 워터펌프 제어 |
 | `servo.c` | TIM2_CH1/CH2 PWM 기반 도어/호스 서보모터 제어 |
-
-`arduino.c`, `uart.c`, `clock.c`, `Makefile`은 아직 세부 코드가 반영되지 않았지만, 현재 문서만으로도 핵심 제어 로직과 주요 드라이버 구조는 설명할 수 있도록 정리했습니다.
-
 ---
 
 ## 2. Overall Software Architecture
