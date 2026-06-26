@@ -1,5 +1,7 @@
 # Arduino RFID Interface README
 
+[English README](./README.eng.md)
+
 Arduino RFID 코드(`RFID_arduino.ino`)와 STM32 수신 코드(`arduino.c`)만을 기준으로 작성했습니다.
 
 ---
